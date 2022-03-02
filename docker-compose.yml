@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  webcv.api:
+    image: ${DOCKER_REGISTRY-}webcvapi
+    build:
+      context: .
+      dockerfile: api/WebCv.Api/Dockerfile

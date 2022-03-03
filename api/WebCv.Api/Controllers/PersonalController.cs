@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebCv.Api.Data.Entities;
 using WebCv.Api.Data.Services.Interfaces;
+using WebCv.Api.ViewModels;
 
 namespace WebCv.Api.Controllers
 {
@@ -18,10 +19,15 @@ namespace WebCv.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PersonalInformation>> Get()
+        public async Task<ActionResult<PersonalInfoViewModel>> Get()
         {
             var information = await _personalInformationDataService.GetAsync();
-            return Ok(information.FirstOrDefault());
+            var personalInfo = information.FirstOrDefault();
+            if (personalInfo != null)
+            {
+                return Ok(new PersonalInfoViewModel(personalInfo));
+            }
+            return NotFound();
         }
     }
 }

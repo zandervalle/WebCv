@@ -10,9 +10,15 @@ services:
   webcv.db:
     image: postgres
     restart: always
+    hostname: webcv-db
     environment:
       POSTGRES_PASSWORD: ${CV_POSTGRES_PASSWORD}
       POSTGRES_USER: ${CV_POSTGRES_USER}
       POSTGRES_DB: ${CV_POSTGRES_DB}
     ports:
       - 5432
+    networks:
+      - webcv.net
+
+networks:
+  webcv.net:

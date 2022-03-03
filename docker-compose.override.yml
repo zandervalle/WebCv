@@ -4,5 +4,13 @@ services:
   webcv.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__webcv=Server=webcv-db;Database=cv;User ID=cvsu;Password=0150c26c-6fab-481b-94c6-d1e21109863f
     ports:
       - "80"
+    networks:
+      - webcv.net
+
+networks:
+  webcv.net:
+    external: 
+      name: webcv_webcv.net
